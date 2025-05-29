@@ -1,0 +1,83 @@
+.categoria-scroll {
+  background: transparent !important;
+  display: flex;
+  overflow-x: auto;
+  padding: 0 10px;
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  position: relative;
+  flex: 1;
+}
+
+ion-segment {
+  --background: transparent !important;
+  background: transparent !important;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: max-content;
+}
+
+
+ion-segment-button.segment-button-checked {
+  background: #e0e0e0 !important;
+}
+
+.arrow {
+
+}
+
+ion-segment-button.categoria-btn {
+  --border-radius: 16px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+  overflow: hidden;
+  margin: 4px;
+  min-width: 110px;
+  --background: transparent;
+  --background-checked: #e0e0e0;
+  --color-checked: #000;
+}
+
+// Cores personalizadas por categoria
+ion-segment-button.rosa {
+  --background: rgba(255, 182, 193, 0.2);
+  --color: #ff69b4;
+}
+ion-segment-button.vermelho {
+  --background: rgba(255, 99, 71, 0.2);
+  --color: #ff6347;
+}
+ion-segment-button.azul {
+  --background: rgba(100, 149, 237, 0.2);
+  --color: #6495ED;
+}
+ion-segment-button.verde {
+  --background: rgba(144, 238, 144, 0.2);
+  --color: #32cd32;
+}
+ion-segment-button.roxo {
+  --background: rgba(216, 191, 216, 0.2);
+  --color: #ba55d3;
+}
+ion-segment-button.laranja {
+  --background: rgba(255, 165, 0, 0.2);
+  --color: #ff8c00;
+}
+ion-segment-button.marrom {
+  --background: rgba(155, 67, 4, 0.2);
+  --color: #ff4000;
+}
+ion-segment-button.ciano {
+  --background: rgba(0, 255, 242, 0.2);
+  --color: #0099ff;
+}
+
+
+
+

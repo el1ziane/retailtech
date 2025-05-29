@@ -1,0 +1,100 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Destaques</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Segmento com ícones e labels -->
+  <ion-segment
+    [(ngModel)]="abaSelecionada"
+    value="lojas"
+    mode="ios"
+    scrollable="true"
+    color="primary"
+    (ionChange)="onSegmentChange($event)"
+    class="segment-destaques"
+  >
+    <ion-segment-button value="lojas">
+      <ion-icon slot="start" name="storefront-outline"></ion-icon>
+      <ion-label>Lojas</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="cupons">
+      <ion-icon slot="start" name="pricetag-outline"></ion-icon>
+      <ion-label>Cupons</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="favoritos">
+      <ion-icon slot="start" name="heart-outline"></ion-icon>
+      <ion-label>Favoritos</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Conteúdo das abas com animação simples -->
+  <div [@fadeInOut]>
+    <ng-container [ngSwitch]="abaSelecionada">
+
+      <!-- Lojas: Carrossel horizontal com imagens -->
+     <!-- Lojas: Carrossel horizontal com imagens e cupons -->
+<div *ngSwitchCase="'lojas'" class="cards-container carousel">
+  <ion-card *ngFor="let loja of lojasDestaque" class="card-destaque loja-card">
+    <img [src]="loja.imagem" alt="{{ loja.nome }}" />
+    <ion-card-header>
+      <ion-card-title>{{ loja.nome }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ loja.descricao }}</p>
+
+      <ion-card
+  button
+  *ngFor="let cupom of getCuponsPorLoja(loja.nome)"
+  (click)="usarCupom(cupom)"
+  class="cupom-inline"
+>
+  <ion-item lines="none">
+    <ion-icon slot="start" name="pricetag-outline" color="warning"></ion-icon>
+    <ion-label>
+      <h3>{{ cupom.titulo }}</h3>
+      <p>Válido até {{ cupom.validade | date:'dd/MM/yyyy' }}</p>
+    </ion-label>
+  </ion-item>
+</ion-card>
+
+    </ion-card-content>
+  </ion-card>
+</div>
+
+
+      <div *ngSwitchCase="'cupons'" class="lista-cards">
+        <ion-card button *ngFor="let cupom of cupons" (click)="usarCupom(cupom)" class="card-cupom-botao">
+          <ion-item lines="none">
+            <ion-icon slot="start" name="pricetag-outline" color="warning"></ion-icon>
+            <ion-label>{{ cupom.titulo }}</ion-label>
+          </ion-item>
+          <div class="detalhes-cupom">
+            <p><strong>Loja:</strong> {{ cupom.loja }}</p>
+            <p>Validade: {{ cupom.validade | date:'dd/MM/yyyy' }}</p>
+            <p>Código: <strong>{{ cupom.codigo }}</strong></p>
+          </div>
+        </ion-card>
+      </div>
+
+      <div *ngSwitchCase="'favoritos'" class="lista-cards">
+        <ion-card button *ngFor="let fav of favoritos" (click)="verFavorito(fav)" class="card-favorito-botao">
+          <ion-item lines="none">
+            <ion-icon slot="start" name="heart-outline" color="danger"></ion-icon>
+            <ion-label>{{ fav.nome }}</ion-label>
+          </ion-item>
+          <div class="detalhes-favorito">
+            <p>{{ fav.descricao }}</p>
+          </div>
+        </ion-card>
+      </div>
+
+
+    </ng-container>
+  </div>
+
+</ion-content>

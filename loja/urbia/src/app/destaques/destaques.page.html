@@ -1,0 +1,149 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="titulo-destaques">Destaques</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <!-- Segmento de abas -->
+  <ion-segment  [(ngModel)]="abaSelecionada"
+  value="lojas"
+  mode="ios"
+  scrollable="true"
+  (ionChange)="onSegmentChange($event)"
+  class="segment-destaques">
+    <ion-segment-button value="cupons">
+      <ion-icon name="pricetag-outline" slot="start"></ion-icon>
+      <ion-label>Cupons</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="validar">
+      <ion-icon name="checkbox-outline" slot="start"></ion-icon>
+      <ion-label>Validar Cupons</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="comoAnunciar">
+      <ion-icon name="megaphone-outline" slot="start"></ion-icon>
+      <ion-label>Meus Anúncios</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <!-- Conteúdo das abas -->
+  <ng-container [ngSwitch]="abaSelecionada">
+
+  <!-- Aba Cupons -->
+<div *ngSwitchCase="'cupons'" class="cupons-da-loja">
+  <!-- Formulário flutuante -->
+  <div *ngIf="exibindoFormulario" class="form-card">
+    <ion-card>
+      <form #cupomForm="ngForm" (ngSubmit)="adicionarCupom(cupomForm)">
+        <ion-card-header>
+          <ion-card-title>Novo Cupom</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Título</ion-label>
+            <ion-input name="titulo" ngModel required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Código</ion-label>
+            <ion-input name="codigo" ngModel required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Validade</ion-label>
+            <ion-datetime name="validade" ngModel presentation="date"></ion-datetime>
+          </ion-item>
+          <ion-button expand="block"  type="submit" style="--background: #03bc97;">Salvar</ion-button>
+          <ion-button expand="block" fill="clear" color="medium" (click)="cancelarFormulario()">Cancelar</ion-button>
+        </ion-card-content>
+      </form>
+    </ion-card>
+  </div>
+
+  <!-- Lista de Cupons com estilo personalizado -->
+  <ion-card *ngFor="let cupom of cupons" class="card-cupom-botao">
+    <ion-item lines="none">
+      <ion-icon slot="start" name="pricetag-outline" color="warning"></ion-icon>
+      <ion-label>
+        <h3>{{ cupom.titulo }}</h3>
+        <p class="detalhes-cupom">Código: <strong>{{ cupom.codigo }}</strong></p>
+        <p class="detalhes-cupom">Validade: {{ cupom.validade | date:'dd/MM/yyyy' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</div>
+
+  <!-- Aba Validar -->
+  <div *ngSwitchCase="'validar'" class="validar-cupom">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Validar Cupom</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Código do Cupom</ion-label>
+          <ion-input [(ngModel)]="codigoParaValidar" name="codigoValidar"></ion-input>
+        </ion-item>
+        <ion-button expand="block" (click)="validarCupom()" style="--background: #03bc97;">Validar</ion-button>
+        <div *ngIf="cupomValidado">
+          <ion-text color="success" *ngIf="!cupomValidado.invalido">
+            Cupom válido: {{ cupomValidado.titulo }} ({{ cupomValidado.codigo }})
+          </ion-text>
+          <ion-text color="danger" *ngIf="cupomValidado.invalido">
+            Cupom inválido ou não encontrado.
+          </ion-text>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Aba Anunciar -->
+<div *ngSwitchCase="'anuncios'" class="anuncios-da-loja">
+  <!-- Formulário para novo anúncio -->
+  <div *ngIf="exibindoFormulario" class="form-card">
+    <ion-card>
+      <form #anuncioForm="ngForm" (ngSubmit)="adicionarAnuncio(anuncioForm)">
+        <ion-card-header>
+          <ion-card-title>Novo Anúncio</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label position="floating">Título</ion-label>
+            <ion-input name="titulo" ngModel required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Descrição</ion-label>
+            <ion-textarea name="descricao" ngModel required></ion-textarea>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Imagem (URL)</ion-label>
+            <ion-input name="imagem" ngModel></ion-input>
+          </ion-item>
+          <ion-button expand="block" type="submit" style="--background: #03bc97;">Salvar</ion-button>
+          <ion-button expand="block" fill="clear" color="medium" (click)="cancelarFormulario()">Cancelar</ion-button>
+        </ion-card-content>
+      </form>
+    </ion-card>
+  </div>
+
+  <!-- Lista de Anúncios -->
+  <ion-card *ngFor="let anuncio of anuncios" class="card-anuncio">
+    <img *ngIf="anuncio.imagem" [src]="anuncio.imagem" alt="Imagem do Anúncio" />
+    <ion-card-header>
+      <ion-card-title>{{ anuncio.titulo }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ anuncio.descricao }}
+    </ion-card-content>
+  </ion-card>
+</div>
+
+<!-- Botão flutuante -->
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button style="--background: #f8b6d2;" (click)="mostrarFormulario()">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+  </ng-container>
+</ion-content>

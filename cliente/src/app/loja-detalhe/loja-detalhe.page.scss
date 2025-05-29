@@ -1,0 +1,19 @@
+ion-card {
+  img {
+    width: 100%;
+    height: auto;
+  }
+  ion-card-content {
+    text-align: center;
+  }
+}
+.item-catalogo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icone-interesse {
+  font-size: 1.5rem;
+  cursor: pointer;
+}

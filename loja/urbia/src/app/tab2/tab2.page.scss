@@ -1,0 +1,30 @@
+.info-loja-toolbar {
+  --background: #f8f8f8;
+  padding: 4px 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.info-loja-item {
+  --min-height: 72px;
+  ion-avatar img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+  }
+
+  .nome-loja {
+    font-weight: 600;
+    margin: 0;
+    font-size: 1rem;
+    color: #222;
+  }
+
+  .endereco-loja {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 4px;
+  }
+}

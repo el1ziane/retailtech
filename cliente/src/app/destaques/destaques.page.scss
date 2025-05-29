@@ -1,0 +1,131 @@
+/* Segmento estilizado */
+.segment-destaques {
+  --background: transparent;
+  --indicator-color: var(--ion-color-primary);
+  --indicator-height: 3px;
+
+  ion-segment-button {
+    font-weight: 600;
+    color: var(--ion-color-medium);
+
+    &.segment-button-checked {
+      color: var(--ion-color-primary);
+    }
+
+    ion-icon {
+      font-size: 20px;
+      margin-right: 6px;
+      vertical-align: middle;
+      transition: color 0.3s ease;
+    }
+
+    &:hover {
+      background: var(--ion-color-primary-tint);
+      border-radius: 12px;
+      cursor: pointer;
+    }
+  }
+}
+
+/* Carrossel horizontal para Lojas */
+.cards-container.carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  ion-card.loja-card {
+    min-width: 280px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+    }
+  }
+}
+
+.lista-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 12px;
+  margin-top: 16px;
+}
+
+.card-cupom-botao, .card-favorito-botao {
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: box-shadow 0.25s ease;
+  background: white;
+  border-left: 6px solid #ff6b6b;
+}
+
+.card-cupom-botao:hover, .card-favorito-botao:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.detalhes-cupom, .detalhes-favorito {
+  padding: 0 16px 12px 56px; /* espaço à esquerda para alinhar com o item */
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.detalhes-cupom p, .detalhes-favorito p {
+  margin: 4px 0;
+}
+
+.cupons-da-loja {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cupom-inline {
+  border-left: 5px solid #ffa502;
+  border-radius: 12px;
+  background-color: #fff7e6;
+  font-size: 0.85rem;
+
+  ion-item {
+    --background: transparent;
+    --padding-start: 12px;
+    --padding-end: 12px;
+  }
+
+  ion-icon {
+    font-size: 20px;
+  }
+
+  h3 {
+    margin: 0;
+    font-weight: 600;
+    color: #333;
+  }
+
+  p {
+    margin: 2px 0 0 0;
+    color: #666;
+    font-size: 0.8rem;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+

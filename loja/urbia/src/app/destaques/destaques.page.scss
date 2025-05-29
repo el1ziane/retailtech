@@ -1,0 +1,119 @@
+
+.cupons-da-loja {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-cupom-botao {
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.25s ease;
+  background: white;
+  border-left: 6px solid #ff6b6b;
+
+  &:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.detalhes-cupom {
+  padding: 0 16px 12px 56px;
+  font-size: 0.9rem;
+  color: #555;
+
+  p {
+    margin: 4px 0;
+  }
+}
+.anuncios-da-loja {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 12px;
+}
+
+.card-anuncio {
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+
+  ion-card-header {
+    background: #f2f2f2;
+    padding: 12px;
+  }
+
+  ion-card-content {
+    padding: 12px;
+    font-size: 0.95rem;
+    color: #333;
+  }
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+}
+.segment-destaques {
+  --background: transparent;
+  --indicator-color: black; // indicador inferior preto
+  --indicator-height: 3px;
+
+  ion-segment-button {
+    font-weight: 600;
+    color: var(--ion-color-medium); // cor das abas inativas
+
+    &.segment-button-checked {
+      color: #000 !important; // cor da aba ativa
+    }
+
+    ion-icon {
+      font-size: 20px;
+      margin-right: 6px;
+      vertical-align: middle;
+      transition: color 0.3s ease;
+    }
+
+    &:hover {
+      background: var(--ion-color-primary-tint);
+      border-radius: 12px;
+      cursor: pointer;
+    }
+  }
+}
+
+
+.como-anunciar {
+  padding: 12px;
+
+  ion-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+    ion-card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #444;
+    }
+
+    ion-item {
+      --background: transparent;
+      font-size: 0.95rem;
+    }
+  }
+
+  .mt-2 {
+    margin-top: 16px;
+  }
+}

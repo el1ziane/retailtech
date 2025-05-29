@@ -1,0 +1,7 @@
+{
+  "name": "urbia",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

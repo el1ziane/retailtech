@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Lojas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+<!-- Caixa de busca -->
+<ion-searchbar
+  placeholder="Buscar por item?"
+  animated="true"
+  showClearButton="always"
+>
+</ion-searchbar>
+
+<!-- Segmento de categorias com scroll -->
+<div class="categoria-scroll" #categoriaContainer>
+  <ion-segment [(ngModel)]="categoriaSelecionada" scrollable>
+    <ion-segment-button
+      *ngFor="let cat of categorias"
+      [value]="cat.valor"
+      [ngClass]="['categoria-btn', cat.cor]"
+    >
+      <ion-label>{{ cat.nome }}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+</div>
+
+  <!-- Lista filtrada de lojas -->
+  <ion-list [inset]="true">
+    <ion-item *ngFor="let loja of lojasFiltradas" (click)="abrirLoja(loja.nome)">
+      <ion-thumbnail slot="start">
+        <img [src]="loja.imagem" alt="{{ loja.nome }}" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ loja.nome }}</h2>
+        <p>{{ loja.categoria | titlecase }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

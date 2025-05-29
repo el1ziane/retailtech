@@ -1,0 +1,23 @@
+.avatar-container {
+  position: relative;
+  width: 120px;
+  margin: 0 auto 20px auto;
+}
+
+.avatar-img {
+  width: 120px;
+  height: 120px;
+  border: 3px solid #ccc;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.edit-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  --padding-start: 4px;
+  --padding-end: 4px;
+  --background: white;
+  --box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+}

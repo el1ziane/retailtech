@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Minha Loja</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-item lines="none" class="info-loja-item">
+  <ion-avatar slot="start">
+    <img src="assets/chinaexpress.png" alt="Logo da loja" />
+  </ion-avatar>
+  <ion-label>
+    <h2 class="nome-loja">Loja China</h2>
+    <p class="endereco-loja">Av.Paraná, 123 - Londrina, PR</p>
+  </ion-label>
+</ion-item>
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- Botão de Cadastrar Produto -->
+ <!-- Botão Flutuante -->
+
+
+
+  <!-- Formulário de Produto -->
+  <ion-card *ngIf="exibindoFormulario">
+    <ion-card-header>
+      <ion-card-title>{{ editandoIndex !== null ? 'Editar Produto' : 'Novo Produto' }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label position="stacked">Descrição</ion-label>
+        <ion-input [(ngModel)]="novoProduto.descricao" placeholder="Digite a descrição"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Imagem</ion-label>
+        <input type="file" (change)="carregarImagem($event)" accept="image/*" />
+      </ion-item>
+
+      <div *ngIf="novoProduto.imagem">
+        <img [src]="novoProduto.imagem" alt="Imagem do produto" style="max-width: 100%; margin-top: 10px;" />
+      </div>
+
+      <ion-button expand="block" (click)="salvarProduto()" style="--background: #03bc97;">
+        {{ editandoIndex !== null ? 'Salvar Alterações' : 'Cadastrar Produto' }}
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Lista de Produtos -->
+  <ion-list>
+    <ion-item *ngFor="let produto of produtos; let i = index">
+      <ion-thumbnail slot="start">
+        <img [src]="produto.imagem" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ produto.descricao }}</h3>
+      </ion-label>
+      <ion-button fill="clear" color="warning" (click)="editarProduto(i)">
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" color="danger" (click)="excluirProduto(i)">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="!exibindoFormulario">
+    <ion-fab-button (click)="mostrarFormularioCadastro()" style="--background: #f48fb1;">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
